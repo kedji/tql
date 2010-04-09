@@ -1,0 +1,94 @@
+TQL - Traffic Query Language
+
+This is a small prototype network content inspection system I wrote a long
+time ago, previously hosted on kedji.no-ip.org.  It is not, by any stretch of
+the imagination, intended to be performant or robust; it's merely a prototype
+stream reassembly system which parses a few application layer protocols and
+file formats.
+
+The interface is a small DSL which (poorly) mimics SQL.  Queries can be
+supplied directly on the command line or put into a file of their own.  These
+queries can be run against live network traffic or .pcap offline files (thanks
+to the ruby-pcap library).
+
+The content inspection system raises generic events (Ruby hashes) containing
+attributes.  Each event is select'ed INTO a handler - stdout/err, a log file,
+and live Ruby code are the most common handlers.  With the RUBY handler,
+events are injected into code provided inline with the query as an open Struct
+named 'e'.
+
+No documentation is provided at this time, but for the curious there is a
+simple typescript output below which demonstrates some of the features.
+
+# Copyright notice:
+#  (C) 2010 (published to github Friday, April 9, 2010)
+# This software is provided 'as-is' without any express or implied warranty.
+# In no event will the authors be held liable for damages arising from the
+# use of this software.  All license is reserved.
+
+========================================
+
+eric@fighter:~/ruby/stream$ ./tql --help
+
++++ TQL - Traffic Query Language +++
+
+Usage: ./tql [-d] [-i if] { -f <file> || -q <query> } [-p <file>]
+  --debug     (-d):  Turn debugging on
+  --interface (-i):  Specify a network interfaace
+  --tql       (-t):  Specify a TQL file
+  --query     (-q);  Specify a TQL query string directly
+  --pcap      (-p):  Specify a pcap file rather than live capture
+  --content   (-c):  Specify file to (content) parse directly
+
+eric@fighter:~/ruby/stream$ sudo su
+root@fighter:/home/eric/ruby/stream# ./tql -q "SELECT host, resource FROM http_request INTO RUBY 'puts \"http://#{e.host}#{e.resource}\"'" -i eth0
+http://github.com/kedji/tql
+http://assets3.github.com/stylesheets/bundle_github.css?501ce607d1a1c
+http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js
+http://github.com/images/modules/header/logov3.png
+http://assets0.github.com/images/modules/header/header_bg.gif?v2
+^CInterrupted.
+2383 packets received by filter
+0 packets dropped by kernel
+
+eric@fighter:~/ruby/stream# ./tql -t regress/regress.tql -p regress/gzip.pcap
+--- tcp_new_stream ---
+  client_ip:          133.193.226.144
+  client_port:        41654
+  pkt:                3
+  server_ip:          16.151.195.15
+  server_port:        56760
+  time:               Wed Jan 07 11:31:19 -0500 2009
+
+--- protos_magic_found ---
+  client_ip:          133.193.226.144
+  client_port:        41654
+  default_port:       false
+  dir:                client
+  pkt:                6
+  protocol:           http_client
+  server_ip:          16.151.195.15
+  server_port:        56760
+  time:               Wed Jan 07 11:31:19 -0500 2009
+
+--- http_request ---
+  client_ip:          133.193.226.144
+  client_port:        41654
+  command:            GET
+  cookie:             PREF=ID=f98dfe26901eaa84:TM=1231076264:LM=1231076264:S=4T
+  dir:                client
+  host:               google.com
+  pkt:                6
+  resource:           /
+  reused_connection:  false
+  server_ip:          16.151.195.15
+  server_port:        56760
+  time:               Wed Jan 07 11:31:19 -0500 2009
+  user_agent:         Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.0.1)
+  version:            1.1
+
+...
+
+Total: 33 packets in 36.5ms (902 pkts/sec) [1913kb/s]
+
+

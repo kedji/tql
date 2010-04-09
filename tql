@@ -1,0 +1,100 @@
+#!/usr/bin/env ruby
+
+# Top-level TQL script - manages the interface between the stream processor
+# (parsers), the event collector, and the TQL parser.
+
+$LOAD_PATH.unshift File.dirname(__FILE__)
+require 'getoptlong'
+require 'stream.rb'
+require 'events.rb'
+
+opts = GetoptLong.new(
+    [ '--debug',     '-d', GetoptLong::NO_ARGUMENT ],
+    [ '--interface', '-i', GetoptLong::REQUIRED_ARGUMENT ],
+    [ '--tql',       '-t', GetoptLong::REQUIRED_ARGUMENT ],
+    [ '--query',     '-q', GetoptLong::REQUIRED_ARGUMENT ],
+    [ '--pcap',      '-p', GetoptLong::REQUIRED_ARGUMENT ],
+    [ '--content',   '-c', GetoptLong::REQUIRED_ARGUMENT ],
+    [ '--help',      '-?', GetoptLong::NO_ARGUMENT] )
+
+debug = nil
+file = nil
+pcap = nil
+content = nil
+interface = nil
+query_str = ""
+
+opts.each do |opt, arg|
+  case opt
+    when '--debug'
+      debug = true
+    when '--interface'
+      interface = arg
+    when '--tql'
+      raise "Superfluous TQL file specification" if file or query_str.length > 1
+      file = arg
+    when '--query'
+      raise "Superfluous query given" if file
+      query_str << arg << ';'
+    when '--pcap'
+      raise "Superfluous pcap specification" if pcap or content
+      pcap = arg
+    when '--content'
+      raise "Superfluous content specification" if pcap or content
+      content = arg
+    else
+      puts "\n+++ TQL - Traffic Query Language +++\n\n"
+      puts "Usage: #{$0} [-d] [-i if] { -f <file> || -q <query> } [-p <file>]"
+      puts "  --debug     (-d):  Turn debugging on"
+      puts "  --interface (-i):  Specify a network interfaace"
+      puts "  --tql       (-t):  Specify a TQL file"
+      puts "  --query     (-q);  Specify a TQL query string directly"
+      puts "  --pcap      (-p):  Specify a pcap file rather than live capture"
+      puts "  --content   (-c):  Specify file to (content) parse directly"
+      puts ""
+      Kernel.exit(1)
+  end
+end
+unless file or query_str.length > 0
+  $stderr.puts "You must specify a query or TQL file"
+  Kernel.exit
+end
+
+# Get the TQL content, parse it
+query_str = File.read(file) if file
+event_collector = EventReceiver::Events.new(debug)
+event_collector.parse_tql(query_str)
+
+# Start up the sniffing engine
+st = Time.now
+
+# Is this file content inspection?
+if content
+  state = StreamState.new(0, 0, :tcp, 0, 0)
+  state.app_state = { :none => { :type => :none }, :src => 0, :dst => 0 }  
+  fp = FileParser.new(event_collector, state, :none, :content, content)
+  fdata = File.read(content)
+  event_collector.bytes = fdata.length
+  event_collector.last_pkt = Struct.new(:time).new
+  st = Time.now
+  fp.parse(fdata)
+  fp.conclude
+
+# This is PCAP or raw traffic inspection
+else
+  protos = Protos.new(event_collector)
+  tcp_handler = TCP_Handler.new(event_collector, protos)
+  udp_handler = UDP_Handler.new(event_collector, protos)
+  sniffer = Sniffer.new(event_collector, pcap, tcp_handler,
+                        udp_handler, interface)
+  st = Time.now
+  sniffer.sniff(!pcap)
+end
+
+# Do some reporting
+tt = Time.now.to_f - st.to_f
+pkts, kb = event_collector.pkt_count, event_collector.bytes / 128
+if event_collector.debug
+  $stderr.puts("Total: #{pkts} packets in #{(tt*10000).to_i.to_f/10}ms " +
+     "(#{(pkts.to_f/tt).to_i} pkts/sec) [#{(kb/tt).to_i}kb/s]")
+end

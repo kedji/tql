@@ -1,0 +1,146 @@
+--- tcp_new_stream ---
+  ack:                0
+  client_ip:          10.0.0.5
+  client_port:        48424
+  pkt:                1
+  seq:                677804174
+  server_ip:          10.0.0.1
+  server_port:        22
+  syn_seen:           true
+  time:               Sat Jan 03 22:36:13 -0500 2009
+
+--- protos_magic_found ---
+  client_ip:          10.0.0.5
+  client_port:        48424
+  default_port:       true
+  dir:                server
+  pkt:                4
+  protocol:           ssh
+  server_ip:          10.0.0.1
+  server_port:        22
+  time:               Sat Jan 03 22:36:13 -0500 2009
+
+--- ssh_detected ---
+  client_ip:          10.0.0.5
+  client_port:        48424
+  dir:                server
+  pkt:                4
+  server_ip:          10.0.0.1
+  server_port:        22
+  time:               Sat Jan 03 22:36:13 -0500 2009
+  version:            SSH-2.0-OpenSSH_4.7
+
+--- protos_parser_aborting ---
+  client_ip:          10.0.0.5
+  client_port:        48424
+  dir:                server
+  parser:             parse_ssh
+  pkt:                4
+  server_ip:          10.0.0.1
+  server_port:        22
+  time:               Sat Jan 03 22:36:13 -0500 2009
+
+--- protos_magic_found ---
+  client_ip:          10.0.0.5
+  client_port:        48424
+  default_port:       true
+  dir:                client
+  pkt:                5
+  protocol:           ssh
+  server_ip:          10.0.0.1
+  server_port:        22
+  time:               Sat Jan 03 22:36:13 -0500 2009
+
+--- ssh_detected ---
+  client_ip:          10.0.0.5
+  client_port:        48424
+  dir:                client
+  pkt:                5
+  server_ip:          10.0.0.1
+  server_port:        22
+  time:               Sat Jan 03 22:36:13 -0500 2009
+  version:            SSH-2.0-OpenSSH_4.8
+
+--- protos_parser_aborting ---
+  client_ip:          10.0.0.5
+  client_port:        48424
+  dir:                client
+  parser:             parse_ssh
+  pkt:                5
+  server_ip:          10.0.0.1
+  server_port:        22
+  time:               Sat Jan 03 22:36:13 -0500 2009
+
+--- tcp_new_stream ---
+  ack:                0
+  client_ip:          10.0.0.5
+  client_port:        32591
+  pkt:                62
+  seq:                3751191198
+  server_ip:          10.0.0.1
+  server_port:        22
+  syn_seen:           true
+  time:               Sat Jan 03 22:36:29 -0500 2009
+
+--- protos_magic_found ---
+  client_ip:          10.0.0.5
+  client_port:        32591
+  default_port:       true
+  dir:                server
+  pkt:                65
+  protocol:           ssh
+  server_ip:          10.0.0.1
+  server_port:        22
+  time:               Sat Jan 03 22:36:30 -0500 2009
+
+--- ssh_detected ---
+  client_ip:          10.0.0.5
+  client_port:        32591
+  dir:                server
+  pkt:                65
+  server_ip:          10.0.0.1
+  server_port:        22
+  time:               Sat Jan 03 22:36:30 -0500 2009
+  version:            SSH-2.0-OpenSSH_4.7
+
+--- protos_parser_aborting ---
+  client_ip:          10.0.0.5
+  client_port:        32591
+  dir:                server
+  parser:             parse_ssh
+  pkt:                65
+  server_ip:          10.0.0.1
+  server_port:        22
+  time:               Sat Jan 03 22:36:30 -0500 2009
+
+--- protos_magic_found ---
+  client_ip:          10.0.0.5
+  client_port:        32591
+  default_port:       true
+  dir:                client
+  pkt:                66
+  protocol:           ssh
+  server_ip:          10.0.0.1
+  server_port:        22
+  time:               Sat Jan 03 22:36:30 -0500 2009
+
+--- ssh_detected ---
+  client_ip:          10.0.0.5
+  client_port:        32591
+  dir:                client
+  pkt:                66
+  server_ip:          10.0.0.1
+  server_port:        22
+  time:               Sat Jan 03 22:36:30 -0500 2009
+  version:            SSH-2.0-OpenSSH_4.8
+
+--- protos_parser_aborting ---
+  client_ip:          10.0.0.5
+  client_port:        32591
+  dir:                client
+  parser:             parse_ssh
+  pkt:                66
+  server_ip:          10.0.0.1
+  server_port:        22
+  time:               Sat Jan 03 22:36:30 -0500 2009
+

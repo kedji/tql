@@ -1,0 +1,330 @@
+--- tcp_new_stream ---
+  ack:                3145767920
+  client_ip:          133.193.226.144
+  client_port:        58482
+  pkt:                1
+  seq:                2691605332
+  server_ip:          170.168.13.171
+  server_port:        56760
+  syn_seen:           false
+  time:               Wed Jan 07 11:31:17 -0500 2009
+
+--- tcp_new_stream ---
+  ack:                0
+  client_ip:          133.193.226.144
+  client_port:        41654
+  pkt:                3
+  seq:                1010550829
+  server_ip:          16.151.195.15
+  server_port:        56760
+  syn_seen:           true
+  time:               Wed Jan 07 11:31:19 -0500 2009
+
+--- protos_magic_found ---
+  client_ip:          133.193.226.144
+  client_port:        41654
+  default_port:       false
+  dir:                client
+  pkt:                6
+  protocol:           http_client
+  server_ip:          16.151.195.15
+  server_port:        56760
+  time:               Wed Jan 07 11:31:19 -0500 2009
+
+--- http_request ---
+  accept:             text/html,application/xhtml+xml,application/xml;q=0.9,*/*
+  client_ip:          133.193.226.144
+  client_port:        41654
+  command:            GET
+  cookie:             PREF=ID=f98dfe26901eaa84:TM=1231076264:LM=1231076264:S=4T
+  dir:                client
+  host:               google.com
+  keepalive:          300
+  pkt:                6
+  referer:            
+  resource:           /
+  reused_connection:  false
+  server_ip:          16.151.195.15
+  server_port:        56760
+  time:               Wed Jan 07 11:31:19 -0500 2009
+  user_agent:         Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.0.1) Gec
+  version:            1.1
+
+--- http_cookie ---
+  client_ip:          133.193.226.144
+  client_port:        41654
+  command:            GET
+  cookie:             PREF=ID=f98dfe26901eaa84:TM=1231076264:LM=1231076264:S=4T
+  dir:                client
+  host:               google.com
+  pkt:                6
+  resource:           /
+  server_ip:          16.151.195.15
+  server_port:        56760
+  time:               Wed Jan 07 11:31:19 -0500 2009
+
+--- protos_magic_found ---
+  client_ip:          133.193.226.144
+  client_port:        41654
+  default_port:       false
+  dir:                server
+  pkt:                8
+  protocol:           http_server
+  server_ip:          16.151.195.15
+  server_port:        56760
+  time:               Wed Jan 07 11:31:19 -0500 2009
+
+--- http_response_header ---
+  chunked:            false
+  client_ip:          133.193.226.144
+  client_port:        41654
+  code:               301
+  content_length:     219
+  content_type:       text/html; charset=UTF-8
+  cookie:             
+  dir:                server
+  host:               google.com
+  pkt:                8
+  resource:           /
+  response:           Moved
+  server:             gws
+  server_ip:          16.151.195.15
+  server_port:        56760
+  time:               Wed Jan 07 11:31:19 -0500 2009
+  version:            1.1
+
+--- file_parser_dne ---
+  client_ip:          133.193.226.144
+  client_port:        41654
+  dir:                server
+  format:             html
+  parser:             fparse_html
+  pkt:                8
+  protocol:           http
+  server_ip:          16.151.195.15
+  server_port:        56760
+  time:               Wed Jan 07 11:31:19 -0500 2009
+
+--- file_transfer ---
+  format:             html
+  name:               /
+  pkt:                8
+  protocol:           http
+  size:               219
+  time:               Wed Jan 07 11:31:19 -0500 2009
+
+--- http_response ---
+  pkt:                8
+  time:               Wed Jan 07 11:31:19 -0500 2009
+
+--- tcp_new_stream ---
+  ack:                0
+  client_ip:          133.193.226.144
+  client_port:        36710
+  pkt:                10
+  seq:                1000622184
+  server_ip:          156.87.214.27
+  server_port:        56760
+  syn_seen:           true
+  time:               Wed Jan 07 11:31:19 -0500 2009
+
+--- protos_magic_found ---
+  client_ip:          133.193.226.144
+  client_port:        36710
+  default_port:       false
+  dir:                client
+  pkt:                13
+  protocol:           http_client
+  server_ip:          156.87.214.27
+  server_port:        56760
+  time:               Wed Jan 07 11:31:19 -0500 2009
+
+--- http_request ---
+  accept:             text/html,application/xhtml+xml,application/xml;q=0.9,*/*
+  client_ip:          133.193.226.144
+  client_port:        36710
+  command:            GET
+  cookie:             PREF=ID=f98dfe26901eaa84:TM=1231076264:LM=1231076264:S=4T
+  dir:                client
+  host:               www.google.com
+  keepalive:          300
+  pkt:                13
+  referer:            
+  resource:           /
+  reused_connection:  false
+  server_ip:          156.87.214.27
+  server_port:        56760
+  time:               Wed Jan 07 11:31:19 -0500 2009
+  user_agent:         Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.0.1) Gec
+  version:            1.1
+
+--- http_cookie ---
+  client_ip:          133.193.226.144
+  client_port:        36710
+  command:            GET
+  cookie:             PREF=ID=f98dfe26901eaa84:TM=1231076264:LM=1231076264:S=4T
+  dir:                client
+  host:               www.google.com
+  pkt:                13
+  resource:           /
+  server_ip:          156.87.214.27
+  server_port:        56760
+  time:               Wed Jan 07 11:31:19 -0500 2009
+
+--- protos_magic_found ---
+  client_ip:          133.193.226.144
+  client_port:        36710
+  default_port:       false
+  dir:                server
+  pkt:                15
+  protocol:           http_server
+  server_ip:          156.87.214.27
+  server_port:        56760
+  time:               Wed Jan 07 11:31:19 -0500 2009
+
+--- http_response_header ---
+  chunked:            false
+  client_ip:          133.193.226.144
+  client_port:        36710
+  code:               200
+  content_length:     2607
+  content_type:       text/html; charset=UTF-8
+  cookie:             
+  dir:                server
+  host:               www.google.com
+  pkt:                15
+  resource:           /
+  response:           OK
+  server:             gws
+  server_ip:          156.87.214.27
+  server_port:        56760
+  time:               Wed Jan 07 11:31:19 -0500 2009
+  version:            1.1
+
+--- file_parser_dne ---
+  client_ip:          133.193.226.144
+  client_port:        36710
+  dir:                server
+  format:             html
+  parser:             fparse_html
+  pkt:                19
+  protocol:           gzip
+  server_ip:          156.87.214.27
+  server_port:        56760
+  time:               Wed Jan 07 11:31:19 -0500 2009
+
+--- file_transfer ---
+  format:             html
+  name:               /.gunzipped
+  pkt:                19
+  protocol:           gzip
+  size:               6147
+  time:               Wed Jan 07 11:31:19 -0500 2009
+
+--- file_transfer ---
+  format:             gzip
+  name:               /
+  pkt:                19
+  protocol:           http
+  size:               2607
+  time:               Wed Jan 07 11:31:19 -0500 2009
+
+--- http_response ---
+  pkt:                19
+  time:               Wed Jan 07 11:31:19 -0500 2009
+
+--- tcp_new_stream ---
+  ack:                0
+  client_ip:          133.193.226.144
+  client_port:        185
+  pkt:                21
+  seq:                1014912993
+  server_ip:          16.151.195.15
+  server_port:        56760
+  syn_seen:           true
+  time:               Wed Jan 07 11:31:19 -0500 2009
+
+--- protos_magic_found ---
+  client_ip:          133.193.226.144
+  client_port:        185
+  default_port:       false
+  dir:                client
+  pkt:                24
+  protocol:           http_client
+  server_ip:          16.151.195.15
+  server_port:        56760
+  time:               Wed Jan 07 11:31:19 -0500 2009
+
+--- http_request ---
+  accept:             image/png,image/*;q=0.8,*/*;q=0.5
+  client_ip:          133.193.226.144
+  client_port:        185
+  command:            GET
+  cookie:             PREF=ID=f98dfe26901eaa84:TM=1231076264:LM=1231076264:S=4T
+  dir:                client
+  host:               clients1.google.com
+  keepalive:          300
+  pkt:                24
+  referer:            http://www.google.com/
+  resource:           /generate_204
+  reused_connection:  false
+  server_ip:          16.151.195.15
+  server_port:        56760
+  time:               Wed Jan 07 11:31:19 -0500 2009
+  user_agent:         Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.0.1) Gec
+  version:            1.1
+
+--- http_cookie ---
+  client_ip:          133.193.226.144
+  client_port:        185
+  command:            GET
+  cookie:             PREF=ID=f98dfe26901eaa84:TM=1231076264:LM=1231076264:S=4T
+  dir:                client
+  host:               clients1.google.com
+  pkt:                24
+  resource:           /generate_204
+  server_ip:          16.151.195.15
+  server_port:        56760
+  time:               Wed Jan 07 11:31:19 -0500 2009
+
+--- protos_magic_found ---
+  client_ip:          133.193.226.144
+  client_port:        185
+  default_port:       false
+  dir:                server
+  pkt:                26
+  protocol:           http_server
+  server_ip:          16.151.195.15
+  server_port:        56760
+  time:               Wed Jan 07 11:31:19 -0500 2009
+
+--- http_response_header ---
+  chunked:            false
+  client_ip:          133.193.226.144
+  client_port:        185
+  code:               204
+  content_length:     0
+  content_type:       text/html
+  cookie:             
+  dir:                server
+  host:               clients1.google.com
+  pkt:                26
+  resource:           /generate_204
+  response:           No
+  server:             GFE/1.3
+  server_ip:          16.151.195.15
+  server_port:        56760
+  time:               Wed Jan 07 11:31:19 -0500 2009
+  version:            1.1
+
+--- tcp_new_stream ---
+  ack:                0
+  client_ip:          133.193.226.144
+  client_port:        34691
+  pkt:                30
+  seq:                1063178109
+  server_ip:          83.137.254.252
+  server_port:        56760
+  syn_seen:           true
+  time:               Wed Jan 07 11:31:23 -0500 2009
+

@@ -1,0 +1,106 @@
+# TQL file designed to help with regression testing.  Reports all but the most
+# common events.
+
+-- Yahoo IM
+select * from yahoo_im_login        into stdout;
+select * from yahoo_im_message      into stdout;
+select * from yahoo_im_friend_list  into stdout;
+
+-- Facebook
+select * from facebook_chat         into stdout;
+
+-- Google Talk
+select * from gtalk_login           into stdout;
+select * from gtalk_message         into stdout;
+
+-- MySpace IM (msim)
+select * from msim_login            into stdout;
+select * from msim_message          into stdout;
+
+-- DHCP
+select * from dhcp_offer            into stdout;
+select * from dhcp_request          into stdout;
+
+-- FTP
+select * from ftp_long_line         into stdout;
+select * from ftp_login             into stdout;
+
+-- SMTP
+select * from smtp_long_line        into stdout;
+select * from smtp_invalid_response into stdout;
+select * from smtp_response         into stdout;
+select pkt, time from smtp_message  into stdout;
+
+-- POP3
+select * from pop3_long_line          into stdout;
+select * from pop3_unreadable_line    into stdout;
+select pkt, time from pop3_message    into stdout;
+
+-- IMAP
+select * from imap_long_line          into stdout;
+select * from imap_unreadable_line    into stdout;
+select pkt, time from imap_message    into stdout;
+
+-- IRC
+select * from irc_long_line    into stdout;
+#select * from irc_line         into stdout;
+select * from irc_login        into stdout;
+select * from irc_channel      into stdout;
+select * from irc_outgoing_msg into stdout;
+select * from irc_channel_part into stdout;
+select * from irc_incoming_msg into stdout;
+
+-- AIM
+#select * from aim_raw_flap     into stdout;
+select * from aim_login        into stdout;
+select * from aim_tlv_overflow into stdout;
+select * from aim_buddy_list   into stdout;
+select * from aim_message      into stdout;
+
+-- HTTP
+select * from http_request           into stdout;
+select * from http_post              into stdout;
+select * from http_response_header   into stdout;
+select * from http_cookie            into stdout;
+select * from http_cookie_set        into stdout;
+select pkt, time from http_response  into stdout;
+
+-- BitTorrent
+select * from bittorrent_content_beginning into stdout;
+select * from bittorrent_node              into stdout;
+
+-- SSH
+select * from ssh_detected    into stdout;
+
+-- VNC
+select * from vnc_detected    into stdout;
+
+-- RDP
+select * from rdp_detected    into stdout;
+
+-- DNS
+select * from dns_query       into stdout;
+select * from dns_response    into stdout;
+
+-- Stream
+select * from tcp_new_stream            into stdout;
+select * from tcp_stream_end            into stdout;
+select * from ip_fragmented_packet      into stdout;
+select * from tcp_connect_failed        into stdout;
+
+-- Protos
+select * from protos_parser_dne         into stdout;
+select * from protos_magic_found        into stdout;
+select * from protos_magic_not_found    into stdout;
+select * from protos_parser_aborting    into stdout;
+select * from protos_parser_exception   into stdout;
+select * from protos_plaintext_password into stdout;
+select * from protos_chat_message       into stdout;
+
+-- File Content
+select size, name, pkt, time, protocol, format from file_transfer  into stdout;
+select * from file_parser_dne                                      into stdout;
+select pkt, size from email_message                                into stdout;
+
+-- Turn on debugging
+set DEBUG = true;
